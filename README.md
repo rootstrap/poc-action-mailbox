@@ -33,7 +33,7 @@ in the system, their state of processing, and a form to create a new InboundEmai
 [doc](https://guides.rubyonrails.org/action_mailbox_basics.html#working-with-action-mailbox-in-development)
 
 **NOTE** 
-To use this feature, you application must not be api only. You can set `config.api_only = false` into config/application.rb file
+To use this feature, you application must not be API only. You can set `config.api_only = false` into config/application.rb file
 
 To use Action Mailbox you must run the following commands:
 
