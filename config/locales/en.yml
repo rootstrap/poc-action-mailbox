@@ -10,3 +10,8 @@ en:
       invalid_content_type: Invalid content type header
       missing_param: A required param is missing
       not_found: Couldn't find the record
+  email:
+    ticket:
+      new_ticket: Your ticket %{} was created
+    user:
+      you_do_not_belong_here: You don't belong here. Please, create a new account
