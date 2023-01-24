@@ -1,4 +1,5 @@
+# here you can use and Env var in from's variable
 class ApplicationMailer < ActionMailer::Base
-  default from: 'from@example.com'
+  default from: 'support@rootstrap.com'
   layout 'mailer'
 end

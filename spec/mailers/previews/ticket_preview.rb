@@ -1,0 +1,8 @@
+# Preview all emails at http://localhost:3000/rails/mailers/ticket
+class TicketPreview < ActionMailer::Preview
+  def new_ticket
+    user = User.last
+    ticket = Ticket.last
+    TicketMailer.new_ticket(user:, ticket_id: ticket.id)
+  end
+end
