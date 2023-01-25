@@ -7,7 +7,6 @@ RSpec.describe TicketMailbox, type: :mailbox do
   let(:mail_subject) { Faker::Internet.name }
 
   context 'with valid params' do
-
     let(:user) { create(:user) }
     let(:mail) do
       Mail.new(from: user.email,
