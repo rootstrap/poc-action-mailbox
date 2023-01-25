@@ -60,7 +60,7 @@ $ bin/rails db:migrate
 1. `rails s`
 1. You can now try your REST services!
 
-## How to use with docker
+## How to use with Docker
 
 1. Have `docker` and `docker-compose` installed (You can check this by doing `docker -v` and `docker-compose -v`)
 1. Run `bootstrap.sh` with the name of your project and the `-d` or `--for-docker` flag like `./bootstrap.sh --name=my_awesome_project -d`
@@ -82,8 +82,8 @@ This template provides a handful of scripts to make your dev experience better!
 - bin/rspec to run specs
   - `bin/rspec .`
 
-You don't have to use these but they are designed to run the same when running with docker or not.
-To illustrate, `bin/rails console` will run the console in the docker container when running with docker and locally when not.
+You don't have to use these but they are designed to run the same when running with Docker or not.
+To illustrate, `bin/rails console` will run the console in the Docker container when running with docker and locally when not.
 
 
 ## Optional configuration

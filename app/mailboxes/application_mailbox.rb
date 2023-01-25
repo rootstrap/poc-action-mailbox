@@ -5,5 +5,5 @@
 # # https://rubular.com/ can help you with your regex
 
 class ApplicationMailbox < ActionMailbox::Base
-  routing(/support@rootstrap.com/i => :ticket)
+  routing(/#{ApplicationMailer::SUPPORT_ADDRESS}/i => :ticket)
 end
