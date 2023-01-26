@@ -1,34 +1,57 @@
-# Rails API Template
+# POC Action Mailbox
 
-[![Github Actions CI](https://github.com/rootstrap/rails_api_base/actions/workflows/ci.yml/badge.svg?event=push)](https://github.com/rootstrap/rails_api_base/actions)
+[![Github Actions CI](https://github.com/rootstrap/poc-action-mailbox/actions/workflows/ci.yml/badge.svg?event=push)](https://github.com/rootstrap/rails_api_base/actions)
 [![Code Climate](https://codeclimate.com/github/rootstrap/rails_api_base/badges/gpa.svg)](https://codeclimate.com/github/rootstrap/rails_api_base)
 [![Test Coverage](https://api.codeclimate.com/v1/badges/63de7f82c79f5fe82f46/test_coverage)](https://codeclimate.com/github/rootstrap/rails_api_base/test_coverage)
 
-Rails Api Base is a boilerplate project for JSON RESTful APIs. It follows the community best practices in terms of standards, security and maintainability, integrating a variety of testing and code quality tools. It's based on Rails 7.0 and Ruby 3.1.
+POC Action Mailbox is a proof of concept of Action Mailbox
+The idea of this development is to learn step by step how Action Mailbox works
 
-Finally, it contains a plug an play Administration console (thanks to [ActiveAdmin](https://github.com/activeadmin/activeadmin)).
+## What is Action Mailbox
+Action Mailbox routes incoming emails to controller-like mailboxes for processing in Rails. 
+Check the ruby doc [here](https://guides.rubyonrails.org/action_mailbox_basics.html). 
 
-## Features
+In other words, the ability to receive emails directly to the ruby app and handle them.
 
-This template comes with:
-- Schema
-  - Users table
-  - Admin users table
-- Endpoints
-  - Sign up with user credentials
-  - Sign in with user credentials
-  - Sign out
-  - Reset password
-  - Get and update user profile
-- Administration panel for users
-- Rspec tests
-- Code quality tools
-- API documentation following https://apiblueprint.org/
-- Docker support
-- Exception Tracking
-- RSpec API Doc Generator
+### Example use case where to use it
 
-## How to use
+imaging we have a client that we need to create a Customer Service Platform, a [mini zendesk's version](https://www.zendesk.com).
+Customer need in bullets:
+1. receive emails from his customer
+2. create a ticket and send a email notification to the customer
+3. Tracking the dialog customer - support. 
+   - The customer or support should replay that email and this action will create a dialog on that ticket
+
+In this POC, we will address the point 1 and 3. 
+
+
+## Working with Action Mailbox in development 
+It's helpful to be able to test incoming emails in development without actually sending and receiving 
+real emails. To accomplish this, there's a conductor controller mounted at
+[rails/conductor/action_mailbox/inbound_emails](localhost:3000/rails/conductor/action_mailbox/inbound_emails), which gives you an index of all the InboundEmails 
+in the system, their state of processing, and a form to create a new InboundEmail as well.
+[doc](https://guides.rubyonrails.org/action_mailbox_basics.html#working-with-action-mailbox-in-development)
+
+**NOTE** 
+To use this feature, you application must not be API only. You can set `config.api_only = false` into config/application.rb file
+
+To use Action Mailbox you must run the following commands:
+
+``` 
+$ bin/rails action_mailbox:install
+$ bin/rails db:migrate 
+```
+
+#### Generate new mailbox
+
+``$ bin/rails generate mailbox forwards``
+
+#### Routing emails
+
+`application_mailbox.rb` file is in charge to root emails using regular expressions. For regular expression, please check 
+[https://rubular.com/](https://rubular.com/)
+
+## How to use this repo
 
 1. Clone this repo
 1. Install PostgreSQL in case you don't have it
@@ -62,60 +85,12 @@ This template provides a handful of scripts to make your dev experience better!
 You don't have to use these but they are designed to run the same when running with docker or not.
 To illustrate, `bin/rails console` will run the console in the docker container when running with docker and locally when not.
 
-## Gems
-
-- [ActiveAdmin](https://github.com/activeadmin/activeadmin) for easy administration
-- [Arctic Admin](https://github.com/cprodhomme/arctic_admin) for responsive active admin
-- [Annotate](https://github.com/ctran/annotate_models) for doc the schema in the classes
-- [Better Errors](https://github.com/charliesome/better_errors) for a better error page
-- [Brakeman](https://github.com/presidentbeef/brakeman) for static analysis security
-- [Bullet](https://github.com/flyerhzm/bullet) help to kill N+1
-- [Byebug](https://github.com/deivid-rodriguez/byebug) for debugging
-- [DelayedJob](https://github.com/collectiveidea/delayed_job) for background processing
-- [Devise](https://github.com/plataformatec/devise) for basic auth
-- [Devise Token Auth](https://github.com/lynndylanhurley/devise_token_auth) for api auth
-- [Dotenv](https://github.com/bkeepers/dotenv) for handling environment variables
-- [Draper](https://github.com/drapergem/draper) for decorators
-- [ExceptionHunter](https://github.com/rootstrap/exception_hunter) for exception tracking
-- [Factory Bot](https://github.com/thoughtbot/factory_bot) for testing data
-- [Faker](https://github.com/stympy/faker) for generating test data
-- [Jbuilder](https://github.com/rails/jbuilder) for json views
-- [Letter Opener](https://github.com/ryanb/letter_opener) for previewing a mail in the browser
-- [Oj](https://github.com/ohler55/oj) for optimized json
-- [Pagy](https://github.com/ddnexus/pagy) for pagination
-- [Pry](https://github.com/pry/pry) for enhancing the ruby shell
-- [Puma](https://github.com/puma/puma) for the server
-- [Pundit](https://github.com/varvet/pundit) for authorization management
-- [Rack CORS](https://github.com/cyu/rack-cors) for handling CORS
-- [Rails Best Practices](https://github.com/flyerhzm/rails_best_practices) for rails linting
-- [Reek](https://github.com/troessner/reek) for ruby linting
-- [RSpec](https://github.com/rspec/rspec) for testing
-- [Rspec API Doc Generator](https://github.com/zipmark/rspec_api_documentation) for API documentation
-- [Rubocop](https://github.com/bbatsov/rubocop/) for ruby linting
-- [Sendgrid](https://github.com/stephenb/sendgrid) for sending mails
-- [Shoulda Matchers](https://github.com/thoughtbot/shoulda-matchers) adds other testing matchers
-- [Simplecov](https://github.com/colszowka/simplecov) for code coverage
-- [Webmock](https://github.com/bblimke/webmock) for stubbing http requests
-- [YAAF](https://github.com/rootstrap/yaaf) for form objects
 
 ## Optional configuration
 
 - Set your [frontend URL](https://github.com/cyu/rack-cors#origin) in `config/initializers/rack_cors.rb`
 - Set your mail sender in `config/initializers/devise.rb`
 - Config your timezone accordingly in `application.rb`.
-
-## Api Docs
-
-https://railsapibasers.docs.apiary.io/
-
-With [Rspec API Doc Generator](https://github.com/zipmark/rspec_api_documentation) you can generate the docs after writing the acceptance specs.
-
-Just run:
-
-`./bin/docs `
-
-An `apiary.apib` file will be generated at the root directory of the project.
-
 
 ## Code quality
 
