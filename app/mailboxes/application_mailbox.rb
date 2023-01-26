@@ -5,5 +5,18 @@
 # # https://rubular.com/ can help you with your regex
 
 class ApplicationMailbox < ActionMailbox::Base
+  before_processing :ensure_user
+
   routing(/#{ApplicationMailer::SUPPORT_ADDRESS}/i => :ticket)
+  routing(/ticket-\d+#{ApplicationMailer::SUPPORT_DOMAIN}/i => :comments)
+
+  private
+
+  def user
+    User.find_by(email: mail.from)
+  end
+
+  def ensure_user
+    bounce_with UserMailer.missing(inbound_email) if user.nil?
+  end
 end
