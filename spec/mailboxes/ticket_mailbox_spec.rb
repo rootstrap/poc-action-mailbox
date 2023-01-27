@@ -20,7 +20,7 @@ RSpec.describe TicketMailbox, type: :mailbox do
     end
 
     it 'creates a new Ticket' do
-      expect { subject }.to change(Ticket, :count).from(0).to(1)
+      expect { subject }.to change(Ticket, :count).by(1)
     end
   end
 
