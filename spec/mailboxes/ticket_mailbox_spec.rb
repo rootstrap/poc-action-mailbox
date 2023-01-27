@@ -15,12 +15,12 @@ RSpec.describe TicketMailbox, type: :mailbox do
                body:)
     end
 
-    it 'marks email as delivered when the from receipt is monterrey' do
+    it 'marks email as delivered when the from receipt is correct' do
       expect(subject).to have_been_delivered
     end
 
     it 'creates a new Ticket' do
-      expect { subject }.to change(Ticket, :count).from(0).to(1)
+      expect { subject }.to change(Ticket, :count).by(1)
     end
   end
 
