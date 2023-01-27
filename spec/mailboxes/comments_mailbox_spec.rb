@@ -4,7 +4,7 @@ RSpec.describe CommentsMailbox, type: :mailbox do
   subject { process(mail) }
 
   let(:ticket) { create(:ticket) }
-  let(:support_email) { "ticket-#{ticket.id}@#{ApplicationMailer::SUPPORT_DOMAIN}.com" }
+  let(:support_email) { "ticket-#{ticket.id}@#{ApplicationMailer::SUPPORT_DOMAIN}" }
   let(:email_subject) { ticket.subject }
   let(:body) { Faker::Lorem.paragraphs(number: 2).join(',') }
   let(:mail) do
@@ -35,7 +35,7 @@ RSpec.describe CommentsMailbox, type: :mailbox do
     end
 
     context 'when the ticket id in the support email does not exist' do
-      let(:support_email) { "ticket-#{ticket.id + 10}@#{ApplicationMailer::SUPPORT_DOMAIN}.com" }
+      let(:support_email) { "ticket-#{ticket.id + 10}@#{ApplicationMailer::SUPPORT_DOMAIN}" }
 
       it 'marks email as bounced when a receipt does not exist' do
         expect(subject).to have_bounced
