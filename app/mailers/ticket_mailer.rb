@@ -6,7 +6,7 @@ class TicketMailer < ApplicationMailer
     mail from: @from, to: user.email, subject:
   end
 
-  def missing(inbound_email)
+  def missing_ticket(inbound_email)
     mail to: inbound_email,
          subject: I18n.t('email.ticket.ticket_does_not_exist')
   end

@@ -5,7 +5,7 @@
 # # https://rubular.com/ can help you with your regex
 
 class ApplicationMailbox < ActionMailbox::Base
-  before_processing :ensure_user_present
+  before_processing :ensure_user_presence
 
   routing(/#{ApplicationMailer::SUPPORT_ADDRESS}/i => :ticket)
   routing(/ticket-\d+#{ApplicationMailer::SUPPORT_DOMAIN}/i => :comments)
@@ -16,7 +16,7 @@ class ApplicationMailbox < ActionMailbox::Base
     @user ||= User.find_by(email: mail.from)
   end
 
-  def ensure_user_present
-    bounce_with UserMailer.missing(inbound_email) if user.nil?
+  def ensure_user_presence
+    bounce_with UserMailer.missing_user(inbound_email) if user.nil?
   end
 end

@@ -1,5 +1,5 @@
 class CommentsMailbox < ApplicationMailbox
-  before_processing :ensure_ticket
+  before_processing :ensure_ticket_presence
 
   TICKET_EXPRESSION = /ticket-(?<ticket_id>\d+)+@(?<domain>\w+)/
 
@@ -15,7 +15,7 @@ class CommentsMailbox < ApplicationMailbox
     @ticket ||= Ticket.find_by(id:)
   end
 
-  def ensure_ticket
-    bounce_with TicketMailer.missing(inbound_email) if ticket.nil?
+  def ensure_ticket_presence
+    bounce_with TicketMailer.missing_ticket(inbound_email) if ticket.nil?
   end
 end
