@@ -12,7 +12,7 @@ class CommentsMailbox < ApplicationMailbox
   def ticket
     recipient = mail.recipients.find { |email_address| TICKET_EXPRESSION.match?(email_address) }
     id = recipient.match(TICKET_EXPRESSION)[:ticket_id]
-    Ticket.find_by(id:)
+    @ticket ||= Ticket.find_by(id:)
   end
 
   def ensure_ticket
