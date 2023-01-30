@@ -16,7 +16,7 @@ RSpec.describe CommentsMailbox, type: :mailbox do
   let(:user) { ticket.user }
 
   context 'with valid params' do
-    it 'marks email as delivered when the from receipt is monterrey-(#ticket)' do
+    it 'marks email as delivered when the from receipt is support-(#ticket)' do
       expect(subject).to have_been_delivered
     end
 
