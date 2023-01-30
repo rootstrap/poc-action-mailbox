@@ -5,4 +5,9 @@ class TicketPreview < ActionMailer::Preview
     ticket = Ticket.last
     TicketMailer.new_ticket(user:, ticket_id: ticket.id)
   end
+
+  def missing_ticket
+    user = User.last
+    TicketMailer.missing_ticket(user.email)
+  end
 end

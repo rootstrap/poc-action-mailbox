@@ -13,5 +13,6 @@ en:
   email:
     ticket:
       new_ticket: Your ticket %{} was created
+      ticket_does_not_exist: Ticket does not exist
     user:
       you_do_not_belong_here: You don't belong here. Please, create a new account
