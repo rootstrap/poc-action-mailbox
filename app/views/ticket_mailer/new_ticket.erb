@@ -1,2 +1,5 @@
 Your ticket number: <%= @ticket_id %> was created. <BR><HR>
 You can answer this email or create a new one using this email address <%= @from %> to add more details.
+
+To confirm this ticket you must click in this
+<%= link_to "ticket url",@url_confirm, target: "_blank" %>

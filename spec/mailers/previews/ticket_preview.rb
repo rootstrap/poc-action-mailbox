@@ -3,7 +3,7 @@ class TicketPreview < ActionMailer::Preview
   def new_ticket
     user = User.last
     ticket = Ticket.last
-    TicketMailer.new_ticket(user:, ticket_id: ticket.id)
+    TicketMailer.new_ticket(user:, ticket:)
   end
 
   def missing_ticket

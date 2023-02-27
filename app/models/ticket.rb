@@ -18,4 +18,9 @@ class Ticket < ApplicationRecord
   has_many :comments, dependent: :destroy
 
   validates :subject, :body, presence: true
+
+  def token
+    signed_id(expires_in: ENV.fetch('TICKET_CONFIRM_EXPIRATION', 15.minutes),
+              purpose: :ticket_confirmation)
+  end
 end

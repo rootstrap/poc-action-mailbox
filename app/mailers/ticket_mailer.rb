@@ -1,7 +1,10 @@
 class TicketMailer < ApplicationMailer
-  def new_ticket(user:, ticket_id:)
+  include Rails.application.routes.url_helpers
+  def new_ticket(user:, ticket:)
+    ticket_id = ticket.id
     @from = "support-#{ticket_id}@rootstrap.com"
     @ticket_id = ticket_id
+    @url_confirm = confirm_ticket_url(ticket.token)
     subject = I18n.t('email.ticket.new_ticket', ticket_id:)
     mail from: @from, to: user.email, subject:
   end
