@@ -37,7 +37,6 @@ group :development, :test do
   gem 'annotate', '~> 3.2', '>= 3.0.3'
   gem 'bullet', '~> 7.0.3'
   gem 'capybara', '~> 3.38'
-  gem 'capybara-email', '~> 3.0', '>= 3.0.1'
   gem 'dotenv-rails', '~> 2.7.6'
   gem 'factory_bot_rails', '~> 5.1', '>= 5.1.1'
   gem 'faker', '~> 2.13'

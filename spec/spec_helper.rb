@@ -8,7 +8,6 @@ require 'webmock/rspec'
 require 'shoulda/matchers'
 require 'pundit/rspec'
 require 'capybara/rails'
-require 'capybara/email/rspec'
 
 FactoryBot.factories.clear
 FactoryBot.reload
