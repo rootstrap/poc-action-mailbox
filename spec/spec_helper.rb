@@ -7,6 +7,8 @@ require 'helpers'
 require 'webmock/rspec'
 require 'shoulda/matchers'
 require 'pundit/rspec'
+require 'capybara/rails'
+require 'capybara/email/rspec'
 
 FactoryBot.factories.clear
 FactoryBot.reload
@@ -29,6 +31,7 @@ RSpec.configure do |config|
     c.syntax = :expect
   end
   config.include FactoryBot::Syntax::Methods
+  config.include ActiveSupport::Testing::TimeHelpers
 
   config.before :each do
     ActionMailer::Base.deliveries.clear

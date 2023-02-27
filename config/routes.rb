@@ -1,4 +1,7 @@
 Rails.application.routes.draw do
+  get 'ticket/confirm/:token', to: 'ticket#confirm', as: :confirm_ticket
+  get 'ticket/not_success', to: 'ticket#not_success', as: :not_success_ticket_token
+
   devise_for :admin_users, ActiveAdmin::Devise.config
   ActiveAdmin.routes(self)
   ExceptionHunter.routes(self)

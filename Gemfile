@@ -36,6 +36,8 @@ gem 'yaaf', '~> 2.2'
 group :development, :test do
   gem 'annotate', '~> 3.2', '>= 3.0.3'
   gem 'bullet', '~> 7.0.3'
+  gem 'capybara', '~> 3.38'
+  gem 'capybara-email', '~> 3.0', '>= 3.0.1'
   gem 'dotenv-rails', '~> 2.7.6'
   gem 'factory_bot_rails', '~> 5.1', '>= 5.1.1'
   gem 'faker', '~> 2.13'
@@ -60,6 +62,7 @@ group :development do
 end
 
 group :test do
+  gem 'nokogiri', '~> 1.14', '>= 1.14.2'
   gem 'shoulda-matchers', '~> 4.1', '>= 4.1.2'
   gem 'simplecov', '~> 0.13.0', require: false
   gem 'webmock', '~> 3.7', '>= 3.7.6'

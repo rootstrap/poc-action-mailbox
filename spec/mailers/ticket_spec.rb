@@ -5,7 +5,7 @@ RSpec.describe TicketMailer, type: :mailer do
   let(:ticket) { create(:ticket, user:) }
 
   it 'replies when a new ticket was created' do
-    expect { TicketMailer.new_ticket(user:, ticket_id: ticket.id).deliver_now }
+    expect { TicketMailer.new_ticket(user:, ticket:).deliver_now }
       .to change { ActionMailer::Base.deliveries.count }.by(1)
   end
 
